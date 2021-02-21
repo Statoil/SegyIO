@@ -63,12 +63,31 @@ start your favourite Python interpreter and type `help(segyio)`, which should
 integrate well with IDLE, pycharm and other Python tools.
 
 ### Quick start ###
+
+Two examples on how to use segyio:
+
+Integrate with numpy to filter for a given treshold value
 ```python
 import segyio
 import numpy as np
+threshold = 1e-2
 with segyio.open('file.sgy') as f:
     for trace in f.trace:
-        filtered = trace[np.where(trace < 1e-2)]
+        filtered = trace[np.where(trace < threshold)]
+```
+
+Visualize the first inline slice in a seismic volume:
+
+```python
+import segyio
+import matplotlib.pyplot as plt
+
+filename = 'file.sgy'
+with segyio.open(filename) as f:
+    inline_number = f.ilines[0]
+    inline_slice = f.iline[inline_number]
+    plt.imshow(inline_slice.T)
+    plt.show()
 ```
 
 See the [examples](#examples) for more.
