@@ -28,6 +28,10 @@ matrix:
         - python: 3.9
           sudo: true
           env: MB_ML_VER=2010
+        - python: 3.9
+          dist: xenial
+          sudo: true
+          env: MB_ML_VER=2010
         - compiler: clang
           python: 3.7
           env:
